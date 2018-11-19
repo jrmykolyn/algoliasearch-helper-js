@@ -57,3 +57,16 @@ test('The request builder should should force clickAnalytics to false on subsequ
   t.end();
 });
 
+test('The request builder should ignore uniqueID for the queries', function(t) {
+  var testData = require('./search.testdata.js')();
+  var searchParams = testData.searchParams;
+
+  searchParams.uniqueID = 'external_identifier';
+
+  var queries = getQueries(searchParams.index, searchParams);
+  t.equal(queries.length, 2);
+  t.equal(queries[0].params.uniqueID, undefined, 'the parameter uniqueID should be ignored on the first query');
+  t.equal(queries[1].params.uniqueID, undefined, 'the parameter uniqueID should be ignored on the first second query');
+
+  t.end();
+});

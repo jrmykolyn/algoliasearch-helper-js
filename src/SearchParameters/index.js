@@ -1526,6 +1526,7 @@ SearchParameters.prototype = {
   },
 
   managedParameters: [
+    'uniqueID',
     'index',
     'facets', 'disjunctiveFacets', 'facetsRefinements',
     'facetsExcludes', 'disjunctiveFacetsRefinements',
