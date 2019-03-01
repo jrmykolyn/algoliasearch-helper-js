@@ -851,16 +851,15 @@ AlgoliaSearchHelper.prototype.getIndex = function() {
   return this.state.index;
 };
 
-function getCurrentPage() {
-  return this.state.page;
-}
 
 /**
  * Get the currently selected page
  * @function
  * @return {number} the current page
  */
-AlgoliaSearchHelper.prototype.getPage = getCurrentPage;
+AlgoliaSearchHelper.prototype.getPage = function getPage() {
+  return this.state.page;
+};
 
 /**
  * Get all the tags currently set to filters the results.
