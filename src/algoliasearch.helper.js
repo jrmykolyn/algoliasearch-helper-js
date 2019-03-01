@@ -392,13 +392,6 @@ AlgoliaSearchHelper.prototype.addDisjunctiveFacetRefinement = function(facet, va
 };
 
 /**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#addDisjunctiveFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.addDisjunctiveRefine = function() {
-  return this.addDisjunctiveFacetRefinement.apply(this, arguments);
-};
-
-/**
  * Adds a refinement on a hierarchical facet. It will throw
  * an exception if the facet is not defined or if the facet
  * is already refined.
@@ -450,14 +443,6 @@ AlgoliaSearchHelper.prototype.addFacetRefinement = function(facet, value) {
 };
 
 /**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#addFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.addRefine = function() {
-  return this.addFacetRefinement.apply(this, arguments);
-};
-
-
-/**
  * Adds a an exclusion filter to a faceted attribute with the `value` provided. If the
  * filter is already set, it doesn't change the filters.
  *
@@ -471,13 +456,6 @@ AlgoliaSearchHelper.prototype.addRefine = function() {
 AlgoliaSearchHelper.prototype.addFacetExclusion = function(facet, value) {
   this._change(this.state.setPage(0).addExcludeRefinement(facet, value));
   return this;
-};
-
-/**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#addFacetExclusion}
- */
-AlgoliaSearchHelper.prototype.addExclude = function() {
-  return this.addFacetExclusion.apply(this, arguments);
 };
 
 /**
@@ -538,13 +516,6 @@ AlgoliaSearchHelper.prototype.removeDisjunctiveFacetRefinement = function(facet,
 };
 
 /**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#removeDisjunctiveFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.removeDisjunctiveRefine = function() {
-  return this.removeDisjunctiveFacetRefinement.apply(this, arguments);
-};
-
-/**
  * Removes the refinement set on a hierarchical facet.
  * @param {string} facet the facet name
  * @return {AlgoliaSearchHelper}
@@ -578,13 +549,6 @@ AlgoliaSearchHelper.prototype.removeFacetRefinement = function(facet, value) {
 };
 
 /**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#removeFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.removeRefine = function() {
-  return this.removeFacetRefinement.apply(this, arguments);
-};
-
-/**
  * Removes an exclusion filter to a faceted attribute with the `value` provided. If the
  * filter is not set, it doesn't change the filters.
  *
@@ -601,13 +565,6 @@ AlgoliaSearchHelper.prototype.removeRefine = function() {
 AlgoliaSearchHelper.prototype.removeFacetExclusion = function(facet, value) {
   this._change(this.state.setPage(0).removeExcludeRefinement(facet, value));
   return this;
-};
-
-/**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#removeFacetExclusion}
- */
-AlgoliaSearchHelper.prototype.removeExclude = function() {
-  return this.removeFacetExclusion.apply(this, arguments);
 };
 
 /**
@@ -642,32 +599,6 @@ AlgoliaSearchHelper.prototype.toggleFacetExclusion = function(facet, value) {
 };
 
 /**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#toggleFacetExclusion}
- */
-AlgoliaSearchHelper.prototype.toggleExclude = function() {
-  return this.toggleFacetExclusion.apply(this, arguments);
-};
-
-/**
- * Adds or removes a filter to a faceted attribute with the `value` provided. If
- * the value is set then it removes it, otherwise it adds the filter.
- *
- * This method can be used for conjunctive, disjunctive and hierarchical filters.
- *
- * This method resets the current page to 0.
- * @param  {string} facet the facet to refine
- * @param  {string} value the associated value
- * @return {AlgoliaSearchHelper}
- * @throws Error will throw an error if the facet is not declared in the settings of the helper
- * @fires change
- * @chainable
- * @deprecated since version 2.19.0, see {@link AlgoliaSearchHelper#toggleFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.toggleRefinement = function(facet, value) {
-  return this.toggleFacetRefinement(facet, value);
-};
-
-/**
  * Adds or removes a filter to a faceted attribute with the `value` provided. If
  * the value is set then it removes it, otherwise it adds the filter.
  *
@@ -684,13 +615,6 @@ AlgoliaSearchHelper.prototype.toggleRefinement = function(facet, value) {
 AlgoliaSearchHelper.prototype.toggleFacetRefinement = function(facet, value) {
   this._change(this.state.setPage(0).toggleFacetRefinement(facet, value));
   return this;
-};
-
-/**
- * @deprecated since version 2.4.0, see {@link AlgoliaSearchHelper#toggleFacetRefinement}
- */
-AlgoliaSearchHelper.prototype.toggleRefine = function() {
-  return this.toggleFacetRefinement.apply(this, arguments);
 };
 
 /**
@@ -743,16 +667,6 @@ function setCurrentPage(page) {
   this._change(this.state.setPage(page));
   return this;
 }
-
-/**
- * Change the current page
- * @deprecated
- * @param  {number} page The page number
- * @return {AlgoliaSearchHelper}
- * @fires change
- * @chainable
- */
-AlgoliaSearchHelper.prototype.setCurrentPage = setCurrentPage;
 
 /**
  * Updates the current page.
@@ -853,21 +767,6 @@ AlgoliaSearchHelper.prototype.overrideStateWithoutTriggeringChangeEvent = functi
 };
 
 /**
- * @deprecated since 2.4.0, see {@link AlgoliaSearchHelper#hasRefinements}
- */
-AlgoliaSearchHelper.prototype.isRefined = function(facet, value) {
-  if (this.state.isConjunctiveFacet(facet)) {
-    return this.state.isFacetRefined(facet, value);
-  } else if (this.state.isDisjunctiveFacet(facet)) {
-    return this.state.isDisjunctiveFacetRefined(facet, value);
-  }
-
-  throw new Error(facet +
-    ' is not properly defined in this helper configuration' +
-    '(use the facets or disjunctiveFacets keys to configure it)');
-};
-
-/**
  * Check if an attribute has any numeric, conjunctive, disjunctive or hierarchical filters.
  * @param {string} attribute the name of the attribute
  * @return {boolean} true if the attribute is filtered by at least one value
@@ -933,13 +832,6 @@ AlgoliaSearchHelper.prototype.isExcluded = function(facet, value) {
 };
 
 /**
- * @deprecated since 2.4.0, see {@link AlgoliaSearchHelper#hasRefinements}
- */
-AlgoliaSearchHelper.prototype.isDisjunctiveRefined = function(facet, value) {
-  return this.state.isDisjunctiveFacetRefined(facet, value);
-};
-
-/**
  * Check if the string is a currently filtering tag.
  * @param {string} tag tag to check
  * @return {boolean}
@@ -947,14 +839,6 @@ AlgoliaSearchHelper.prototype.isDisjunctiveRefined = function(facet, value) {
 AlgoliaSearchHelper.prototype.hasTag = function(tag) {
   return this.state.isTagRefined(tag);
 };
-
-/**
- * @deprecated since 2.4.0, see {@link AlgoliaSearchHelper#hasTag}
- */
-AlgoliaSearchHelper.prototype.isTagRefined = function() {
-  return this.hasTagRefinements.apply(this, arguments);
-};
-
 
 /**
  * Get the name of the currently used index.
@@ -971,12 +855,6 @@ function getCurrentPage() {
   return this.state.page;
 }
 
-/**
- * Get the currently selected page
- * @deprecated
- * @return {number} the current page
- */
-AlgoliaSearchHelper.prototype.getCurrentPage = getCurrentPage;
 /**
  * Get the currently selected page
  * @function
