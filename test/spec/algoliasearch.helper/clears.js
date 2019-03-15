@@ -17,12 +17,12 @@ function fixture() {
     }]
   });
 
-  return helper.toggleRefine('facet1', '0')
-    .toggleRefine('facet2', '0')
-    .toggleRefine('disjunctiveFacet1', '0')
-    .toggleRefine('disjunctiveFacet2', '0')
-    .toggleExclude('excluded1', '0')
-    .toggleExclude('excluded2', '0')
+  return helper.toggleFacetRefinement('facet1', '0')
+    .toggleFacetRefinement('facet2', '0')
+    .toggleFacetRefinement('disjunctiveFacet1', '0')
+    .toggleFacetRefinement('disjunctiveFacet2', '0')
+    .toggleFacetExclusion('excluded1', '0')
+    .toggleFacetExclusion('excluded2', '0')
     .addNumericRefinement('numeric1', '>=', '0')
     .addNumericRefinement('numeric1', '<', '10')
     .addNumericRefinement('numeric2', '>=', 0)
@@ -65,7 +65,7 @@ test('Clear with a name should work on every type and not remove others than tar
 test('Clearing the same field from multiple elements should remove it everywhere', function(t) {
   var helper = fixture();
 
-  helper.addNumericRefinement('facet1', '>=', '10').toggleExclude('facet1', 'value');
+  helper.addNumericRefinement('facet1', '>=', '10').toggleFacetExclusion('facet1', 'value');
 
   t.deepEqual(helper.state.facetsRefinements.facet1, ['0']);
   t.deepEqual(helper.state.numericRefinements.facet1, {'>=': [10]});

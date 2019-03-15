@@ -63,10 +63,10 @@ test('getState should return an object according to the specified filters', func
   var index = 'indexNameInTheHelper';
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
-  helper.toggleRefine('facetC', 'menu');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
+  helper.toggleFacetRefinement('facetC', 'menu');
   helper.addNumericRefinement('numerical', '=', 3);
   helper.addNumericRefinement('numerical2', '<=', 3);
 
@@ -119,9 +119,9 @@ test('Get the state as a query string', function(t) {
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   // Here we add the number as strings (which is correct but not orthodox)
   // because the parser will return string values...
   helper.addNumericRefinement('numerical', '=', '3');
@@ -155,9 +155,9 @@ test('Set the state with a query parameter with index', function(t) {
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   helper.addNumericRefinement('numerical', '=', 3);
   helper.addNumericRefinement('numerical2', '<=', 3);
 
@@ -185,9 +185,9 @@ test('Set the state with a query parameter without index', function(t) {
   var helper = algoliasearchHelper(fakeClient, null, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   helper.addNumericRefinement('numerical', '=', 3);
   helper.addNumericRefinement('numerical2', '<=', 3);
 
@@ -215,9 +215,9 @@ test('Set the state with a query parameter with unknown querystring attributes',
   var helper = algoliasearchHelper(fakeClient, null, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   helper.addNumericRefinement('numerical', '=', 3);
   helper.addNumericRefinement('numerical2', '<=', 3);
 
@@ -247,9 +247,9 @@ test('Serialize with prefix', function(t) {
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   // Here we add the number as strings (which is correct but not orthodox)
   // because the parser will return string values...
   helper.addNumericRefinement('numerical', '=', '3');
@@ -306,9 +306,9 @@ test('Serialize with prefix, this should have no impact on user provided paramat
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   // Here we add the number as strings (which is correct but not orthodox)
   // because the parser will return string values...
   helper.addNumericRefinement('numerical', '=', '3');
@@ -345,9 +345,9 @@ test('Should be able to deserialize qs with namespaced attributes', function(t) 
   var helper = algoliasearchHelper(fakeClient, index, initialState);
 
   helper.setQuery('a query');
-  helper.toggleRefine('facetA', 'a&b=13');
-  helper.toggleRefine('facetWeDontCareAbout', 'v');
-  helper.toggleRefine('facetB', 'd');
+  helper.toggleFacetRefinement('facetA', 'a&b=13');
+  helper.toggleFacetRefinement('facetWeDontCareAbout', 'v');
+  helper.toggleFacetRefinement('facetB', 'd');
   helper.addNumericRefinement('numerical', '=', 3);
   helper.addNumericRefinement('numerical2', '<=', 3);
 
@@ -372,7 +372,7 @@ test('getStateFromQueryString should parse page as number and be consistent with
   var index = 'indexNameInTheHelper';
   var helper = algoliasearchHelper(fakeClient, index, {});
 
-  helper.setCurrentPage(10);
+  helper.setPage(10);
 
   var filters = ['page'];
 
@@ -415,7 +415,7 @@ test('should be able to get configuration that is not from algolia', function(t)
   var index = 'indexNameInTheHelper';
   var helper = algoliasearchHelper(fakeClient, index, {});
 
-  helper.setCurrentPage(10);
+  helper.setPage(10);
 
   var filters = ['page', 'index'];
 

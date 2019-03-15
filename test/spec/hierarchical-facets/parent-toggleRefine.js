@@ -2,15 +2,15 @@
 
 var test = require('tape');
 
-test('hierarchical facets: toggleRefine behavior', function(t) {
+test('hierarchical facets: toggleFacetRefinement behavior', function(t) {
   var algoliasearch = require('algoliasearch');
   var sinon = require('sinon');
 
   var algoliasearchHelper = require('../../../');
 
-  var appId = 'hierarchical-toggleRefine-appId';
-  var apiKey = 'hierarchical-toggleRefine-apiKey';
-  var indexName = 'hierarchical-toggleRefine-indexName';
+  var appId = 'hierarchical-toggleFacetRefinement-appId';
+  var apiKey = 'hierarchical-toggleFacetRefinement-apiKey';
+  var indexName = 'hierarchical-toggleFacetRefinement-indexName';
 
   var client = algoliasearch(appId, apiKey);
   var helper = algoliasearchHelper(client, indexName, {
@@ -23,13 +23,13 @@ test('hierarchical facets: toggleRefine behavior', function(t) {
   client.search = sinon.stub().returns(new Promise(function() {}));
 
   // select `Flying dog`
-  helper.toggleRefine('categories', 'beers > IPA > Flying dog');
+  helper.toggleFacetRefinement('categories', 'beers > IPA > Flying dog');
 
   // unselect `beers`
-  helper.toggleRefine('categories', 'beers');
+  helper.toggleFacetRefinement('categories', 'beers');
 
   // select `beers`
-  helper.toggleRefine('categories', 'beers');
+  helper.toggleFacetRefinement('categories', 'beers');
   // we should be on `beers`
 
   helper.setQuery('a').search();
@@ -51,15 +51,15 @@ test('hierarchical facets: toggleRefine behavior', function(t) {
   t.end();
 });
 
-test('hierarchical facets: toggleRefine behavior when root level', function(t) {
+test('hierarchical facets: toggleFacetRefinement behavior when root level', function(t) {
   var algoliasearch = require('algoliasearch');
   var sinon = require('sinon');
 
   var algoliasearchHelper = require('../../../');
 
-  var appId = 'hierarchical-toggleRefine-appId';
-  var apiKey = 'hierarchical-toggleRefine-apiKey';
-  var indexName = 'hierarchical-toggleRefine-indexName';
+  var appId = 'hierarchical-toggleFacetRefinement-appId';
+  var apiKey = 'hierarchical-toggleFacetRefinement-apiKey';
+  var indexName = 'hierarchical-toggleFacetRefinement-indexName';
 
   var client = algoliasearch(appId, apiKey);
   var helper = algoliasearchHelper(client, indexName, {
@@ -71,8 +71,8 @@ test('hierarchical facets: toggleRefine behavior when root level', function(t) {
 
   client.search = sinon.stub().returns(new Promise(function() {}));
 
-  helper.toggleRefine('categories', 'beers > IPA > Flying dog');
-  helper.toggleRefine('categories', 'beers');
+  helper.toggleFacetRefinement('categories', 'beers > IPA > Flying dog');
+  helper.toggleFacetRefinement('categories', 'beers');
   // we should be on ``
 
   helper.setQuery('a').search();
@@ -94,15 +94,15 @@ test('hierarchical facets: toggleRefine behavior when root level', function(t) {
   t.end();
 });
 
-test('hierarchical facets: toggleRefine behavior when different root level', function(t) {
+test('hierarchical facets: toggleFacetRefinement behavior when different root level', function(t) {
   var algoliasearch = require('algoliasearch');
   var sinon = require('sinon');
 
   var algoliasearchHelper = require('../../../');
 
-  var appId = 'hierarchical-toggleRefine-appId';
-  var apiKey = 'hierarchical-toggleRefine-apiKey';
-  var indexName = 'hierarchical-toggleRefine-indexName';
+  var appId = 'hierarchical-toggleFacetRefinement-appId';
+  var apiKey = 'hierarchical-toggleFacetRefinement-apiKey';
+  var indexName = 'hierarchical-toggleFacetRefinement-indexName';
 
   var client = algoliasearch(appId, apiKey);
   var helper = algoliasearchHelper(client, indexName, {
@@ -114,8 +114,8 @@ test('hierarchical facets: toggleRefine behavior when different root level', fun
 
   client.search = sinon.stub().returns(new Promise(function() {}));
 
-  helper.toggleRefine('categories', 'beers > IPA > Flying dog');
-  helper.toggleRefine('categories', 'fruits');
+  helper.toggleFacetRefinement('categories', 'beers > IPA > Flying dog');
+  helper.toggleFacetRefinement('categories', 'fruits');
   // we should be on `fruits`
 
   helper.setQuery('a').search();

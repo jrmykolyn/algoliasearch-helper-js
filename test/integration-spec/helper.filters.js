@@ -56,7 +56,7 @@ test('[INT][FILTERS] Should retrieve different values for multi facetted records
           f3: 1
         });
 
-        helper.addRefine('facet', 'f2').search();
+        helper.addFacetRefinement('facet', 'f2').search();
       }
 
       if (calls === 2) {
@@ -65,13 +65,13 @@ test('[INT][FILTERS] Should retrieve different values for multi facetted records
           f1: 1,
           f2: 1
         });
-        helper.toggleRefine('facet', 'f3').search();
+        helper.toggleFacetRefinement('facet', 'f3').search();
       }
 
       if (calls === 3) {
         t.equal(content.hits.length, 0, 'filter should result in 0 item');
         t.equal(content.facets[0], undefined);
-        helper.removeRefine('facet', 'f2').search();
+        helper.removeFacetRefinement('facet', 'f2').search();
       }
 
       if (calls === 4) {
@@ -88,7 +88,7 @@ test('[INT][FILTERS] Should retrieve different values for multi facetted records
       }
     });
 
-    helper.addRefine('facet', 'f1').search();
+    helper.addFacetRefinement('facet', 'f1').search();
   })
     .then(null, bind(t.error, t));
 });

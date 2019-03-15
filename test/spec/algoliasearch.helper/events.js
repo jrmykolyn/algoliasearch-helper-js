@@ -35,29 +35,29 @@ test('Change events should be emitted as soon as the state change, but search sh
   t.equal(changeEventCount, 2, 'clearRefinements - change');
   t.equal(stubbedSearch.callCount, 0, 'clearRefinements - search');
 
-  helper.addDisjunctiveRefine('city', 'Paris');
-  t.equal(changeEventCount, 3, 'addDisjunctiveRefine - change');
-  t.equal(stubbedSearch.callCount, 0, 'addDisjunctiveRefine - search');
+  helper.addDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(changeEventCount, 3, 'addDisjunctiveFacetRefinement - change');
+  t.equal(stubbedSearch.callCount, 0, 'addDisjunctiveFacetRefinement - search');
 
-  helper.removeDisjunctiveRefine('city', 'Paris');
-  t.equal(changeEventCount, 4, 'removeDisjunctiveRefine - change');
-  t.equal(stubbedSearch.callCount, 0, 'removeDisjunctiveRefine - search');
+  helper.removeDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(changeEventCount, 4, 'removeDisjunctiveFacetRefinement - change');
+  t.equal(stubbedSearch.callCount, 0, 'removeDisjunctiveFacetRefinement - search');
 
-  helper.addExclude('tower', 'Empire State Building');
-  t.equal(changeEventCount, 5, 'addExclude - change');
-  t.equal(stubbedSearch.callCount, 0, 'addExclude - search');
+  helper.addFacetExclusion('tower', 'Empire State Building');
+  t.equal(changeEventCount, 5, 'addFacetExclusion - change');
+  t.equal(stubbedSearch.callCount, 0, 'addFacetExclusion - search');
 
-  helper.removeExclude('tower', 'Empire State Building');
-  t.equal(changeEventCount, 6, 'removeExclude - change');
-  t.equal(stubbedSearch.callCount, 0, 'removeExclude - search');
+  helper.removeFacetExclusion('tower', 'Empire State Building');
+  t.equal(changeEventCount, 6, 'removeFacetExclusion - change');
+  t.equal(stubbedSearch.callCount, 0, 'removeFacetExclusion - search');
 
-  helper.addRefine('tower', 'Empire State Building');
-  t.equal(changeEventCount, 7, 'addRefine - change');
-  t.equal(stubbedSearch.callCount, 0, 'addRefine - search');
+  helper.addFacetRefinement('tower', 'Empire State Building');
+  t.equal(changeEventCount, 7, 'addFacetRefinement - change');
+  t.equal(stubbedSearch.callCount, 0, 'addFacetRefinement - search');
 
-  helper.removeRefine('tower', 'Empire State Building');
-  t.equal(changeEventCount, 8, 'removeRefine - change');
-  t.equal(stubbedSearch.callCount, 0, 'removeRefine - search');
+  helper.removeFacetRefinement('tower', 'Empire State Building');
+  t.equal(changeEventCount, 8, 'removeFacetRefinement - change');
+  t.equal(stubbedSearch.callCount, 0, 'removeFacetRefinement - search');
 
   helper.search();
   t.equal(changeEventCount, 8, "final search doesn't call the change");
@@ -95,17 +95,17 @@ test('Change events should only be emitted for meaningful changes', function(t) 
   t.equal(changeEventCount, 0, 'search');
   t.equal(stubbedSearch.callCount, 0, 'search');
 
-  helper.addDisjunctiveRefine('city', 'Paris');
-  t.equal(changeEventCount, 0, 'addDisjunctiveRefine');
-  t.equal(stubbedSearch.callCount, 0, 'addDisjunctiveRefine');
+  helper.addDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(changeEventCount, 0, 'addDisjunctiveFacetRefinement');
+  t.equal(stubbedSearch.callCount, 0, 'addDisjunctiveFacetRefinement');
 
-  helper.addExclude('tower', 'Empire State Building');
-  t.equal(changeEventCount, 0, 'addExclude');
-  t.equal(stubbedSearch.callCount, 0, 'addExclude');
+  helper.addFacetExclusion('tower', 'Empire State Building');
+  t.equal(changeEventCount, 0, 'addFacetExclusion');
+  t.equal(stubbedSearch.callCount, 0, 'addFacetExclusion');
 
-  helper.addRefine('tower', 'Empire State Building');
-  t.equal(changeEventCount, 0, 'addRefine');
-  t.equal(stubbedSearch.callCount, 0, 'addRefine');
+  helper.addFacetRefinement('tower', 'Empire State Building');
+  t.equal(changeEventCount, 0, 'addFacetRefinement');
+  t.equal(stubbedSearch.callCount, 0, 'addFacetRefinement');
 
   helper.addNumericRefinement('price', '>', 300);
   t.equal(changeEventCount, 0, 'addNumericRefinement');
@@ -120,17 +120,17 @@ test('Change events should only be emitted for meaningful changes', function(t) 
   t.equal(changeEventCount, 1, 'clearRefinements');
   t.equal(stubbedSearch.callCount, 0, 'clearRefinements');
 
-  helper.removeDisjunctiveRefine('city', 'Paris');
-  t.equal(changeEventCount, 1, 'removeDisjunctiveRefine');
-  t.equal(stubbedSearch.callCount, 0, 'removeDisjunctiveRefine');
+  helper.removeDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(changeEventCount, 1, 'removeDisjunctiveFacetRefinement');
+  t.equal(stubbedSearch.callCount, 0, 'removeDisjunctiveFacetRefinement');
 
-  helper.removeExclude('tower', 'Empire State Building');
-  t.equal(changeEventCount, 1, 'removeExclude');
-  t.equal(stubbedSearch.callCount, 0, 'removeExclude');
+  helper.removeFacetExclusion('tower', 'Empire State Building');
+  t.equal(changeEventCount, 1, 'removeFacetExclusion');
+  t.equal(stubbedSearch.callCount, 0, 'removeFacetExclusion');
 
-  helper.removeRefine('tower', 'Empire State Building');
-  t.equal(changeEventCount, 1, 'removeRefine');
-  t.equal(stubbedSearch.callCount, 0, 'removeRefine');
+  helper.removeFacetRefinement('tower', 'Empire State Building');
+  t.equal(changeEventCount, 1, 'removeFacetRefinement');
+  t.equal(stubbedSearch.callCount, 0, 'removeFacetRefinement');
 
   helper.search();
   t.equal(changeEventCount, 1, "final search doesn't call the change");
@@ -172,23 +172,23 @@ test('search event should be emitted once when the search is triggered and befor
   helper.clearRefinements();
   t.equal(count, 0, 'clearRefinements');
 
-  helper.addDisjunctiveRefine('city', 'Paris');
-  t.equal(count, 0, 'addDisjunctiveRefine');
+  helper.addDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(count, 0, 'addDisjunctiveFacetRefinement');
 
-  helper.removeDisjunctiveRefine('city', 'Paris');
-  t.equal(count, 0, 'removeDisjunctiveRefine');
+  helper.removeDisjunctiveFacetRefinement('city', 'Paris');
+  t.equal(count, 0, 'removeDisjunctiveFacetRefinement');
 
-  helper.addExclude('tower', 'Empire State Building');
-  t.equal(count, 0, 'addExclude');
+  helper.addFacetExclusion('tower', 'Empire State Building');
+  t.equal(count, 0, 'addFacetExclusion');
 
-  helper.removeExclude('tower', 'Empire State Building');
-  t.equal(count, 0, 'removeExclude');
+  helper.removeFacetExclusion('tower', 'Empire State Building');
+  t.equal(count, 0, 'removeFacetExclusion');
 
-  helper.addRefine('tower', 'Empire State Building');
-  t.equal(count, 0, 'addRefine');
+  helper.addFacetRefinement('tower', 'Empire State Building');
+  t.equal(count, 0, 'addFacetRefinement');
 
-  helper.removeRefine('tower', 'Empire State Building');
-  t.equal(count, 0, 'removeRefine');
+  helper.removeFacetRefinement('tower', 'Empire State Building');
+  t.equal(count, 0, 'removeFacetRefinement');
 
   helper.search();
   t.equal(count, 1, 'final search does trigger the search event');

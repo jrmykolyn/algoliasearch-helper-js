@@ -22,7 +22,7 @@ test('hierarchical facets: show parent level', function(t) {
     }]
   });
 
-  helper.toggleRefine('categories', 'beers | IPA');
+  helper.toggleFacetRefinement('categories', 'beers | IPA');
 
   var algoliaResponse = {
     'results': [{

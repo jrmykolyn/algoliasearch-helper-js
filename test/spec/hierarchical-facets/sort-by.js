@@ -22,7 +22,7 @@ test('hierarchical facets: using sortBy', function(t) {
     }]
   });
 
-  helper.toggleRefine('categories', 'beers > IPA > Flying dog');
+  helper.toggleFacetRefinement('categories', 'beers > IPA > Flying dog');
 
   var algoliaResponse = {
     'results': [{

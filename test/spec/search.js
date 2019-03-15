@@ -18,8 +18,8 @@ test('Search should call the algolia client according to the number of refinemen
     disjunctiveFacets: ['city']
   });
 
-  helper.addDisjunctiveRefine('city', 'Paris', true);
-  helper.addDisjunctiveRefine('city', 'New York', true);
+  helper.addDisjunctiveFacetRefinement('city', 'Paris', true);
+  helper.addDisjunctiveFacetRefinement('city', 'New York', true);
 
   helper.on('result', function(data) {
     // shame deepclone, to remove any associated methods coming from the results
@@ -116,12 +116,12 @@ test('no mutating methods should trigger a search', function(t) {
 
   helper.setQuery('');
   helper.clearRefinements();
-  helper.addDisjunctiveRefine('city', 'Paris');
-  helper.removeDisjunctiveRefine('city', 'Paris');
-  helper.addExclude('tower', 'Empire State Building');
-  helper.removeExclude('tower', 'Empire State Building');
-  helper.addRefine('tower', 'Empire State Building');
-  helper.removeRefine('tower', 'Empire State Building');
+  helper.addDisjunctiveFacetRefinement('city', 'Paris');
+  helper.removeDisjunctiveFacetRefinement('city', 'Paris');
+  helper.addFacetExclusion('tower', 'Empire State Building');
+  helper.removeFacetExclusion('tower', 'Empire State Building');
+  helper.addFacetRefinement('tower', 'Empire State Building');
+  helper.removeFacetRefinement('tower', 'Empire State Building');
 
   t.equal(stubbedSearch.callCount, 0, 'should not have triggered calls');
 

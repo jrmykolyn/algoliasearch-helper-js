@@ -64,7 +64,7 @@ if (require.main === module) {
   }).then(function() {
     helper.__saveLastToFile('dummy-tags.json');
 
-    var otherState = initialState.addExcludeRefinement('brand', 'Apple');
+    var otherState = initialState.addFacetExclusionRefinement('brand', 'Apple');
     return helper.searchOnce(otherState);
   }).then(function() {
     helper.__saveLastToFile('exclude-apple.json');

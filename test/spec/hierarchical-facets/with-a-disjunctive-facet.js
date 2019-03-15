@@ -21,8 +21,8 @@ test('hierarchical facets: combined with a disjunctive facet', function(t) {
     }]
   });
 
-  helper.toggleRefine('categories', 'beers > IPA');
-  helper.toggleRefine('colors', 'blue');
+  helper.toggleFacetRefinement('categories', 'beers > IPA');
+  helper.toggleFacetRefinement('colors', 'blue');
 
   client.search = sinon.stub().returns(new Promise(function() {}));
 

@@ -19,7 +19,7 @@ test('hierarchical facets: using getHierarchicalFacetBreadcrumb()', function(t) 
     }]
   });
 
-  helper.toggleRefine('categories', 'beers > IPA > Flying dog');
+  helper.toggleFacetRefinement('categories', 'beers > IPA > Flying dog');
 
   t.deepEqual(
     helper.getHierarchicalFacetBreadcrumb('categories'),

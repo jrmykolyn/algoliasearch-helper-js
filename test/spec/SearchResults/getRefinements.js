@@ -37,7 +37,7 @@ test('getRefinements(facetName) returns a refinement(facet) when a facet refinem
   var refinements = result.getRefinements();
   var facetValues = result.getFacetValues('brand');
   var refinedFacetValues = filter(facetValues, function(f) {
-    return f.isRefined === true;
+    return f.hasRefinements === true;
   });
 
   var expected = [{
@@ -83,7 +83,7 @@ test(
     var refinements = result.getRefinements();
     var facetValues = result.getFacetValues('type');
     var refinedFacetValues = filter(facetValues, function(f) {
-      return f.isRefined === true;
+      return f.hasRefinements === true;
     });
 
     var expected = [{

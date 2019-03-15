@@ -21,7 +21,7 @@ test('hierarchical facets: throw on unknown facet', function(t) {
   });
 
   t.throws(
-    bind(helper.toggleRefine, helper, 'unknownFacet', 'beers'),
+    bind(helper.toggleFacetRefinement, helper, 'unknownFacet', 'beers'),
     'Refine on an unknown hierarchical facet throws'
   );
 
