@@ -61,7 +61,7 @@
     "download": "5.0.3",
     "envify": "4.1.0",
     "eslint": "1.10.3",
-    "eslint-config-airbnb": "0.0.8",
+    "eslint-config-airbnb": "0.1.1",
     "eslint-config-algolia": "3.0.0",
     "gh-pages": "1.0.0",
     "gulp": "3.9.1",
