@@ -103,7 +103,7 @@
     "tape": "4.9.0",
     "uglify-js": "2.8.29",
     "vinyl": "1.2.0",
-    "watchify": "3.7.0",
+    "watchify": "3.11.1",
     "webpack": "1.15.0",
     "webpack-stream": "3.2.0",
     "zuul": "3.11.1",
