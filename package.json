@@ -92,7 +92,7 @@
     "opn-cli": "3.1.0",
     "pretty-bytes-cli": "2.0.0",
     "prompt": "1.0.0",
-    "pug": "^2.0.3",
+    "pug": "2.0.3",
     "replace-ext": "1.0.0",
     "rimraf": "2.6.3",
     "semver": "5.3.0",
